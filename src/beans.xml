@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myCar03" class="com.niit.factory.MyBeanFactory" factory-method="creatCar">
+        <property name="color" value="紫色"/>
+        <property name="brand" value="玛莎拉蒂"/>
+        <property name="price" value="40000000"/>
+    </bean>
+    <bean id="boss02" class="com.niit.factory.MyBeanFactory" factory-method="creatBoss">
+        <property name="name" value="周周周"/>
+        <property name="hobby" >
+            <list>
+                <value>阅读</value>
+                <value>运动</value>
+            </list>
+        </property>
+        <property name="jobs">
+            <map>
+                <entry>
+                    <key><value>AM</value></key>
+                    <value>工作</value>
+                </entry>
+                <entry>
+                    <key><value>PM</value></key>
+                    <value>面试</value>
+                </entry>
+            </map>
+        </property>
+        <property name="car" ref="myCar03"/>
+    </bean>
+
+
+
+
+
+
+    <bean id="hello" class="com.niit.soft.HelloWorld"/>
+    <bean id="userDao" class="com.niit.soft.UserDaoImpl"/>
+    <bean id="myCar" class="com.niit.soft.Car" p:price="3000000">
+        <property name="brand" value="奥迪"/>
+        <property name="color"><value>红色</value></property>
+    </bean>
+    <bean id="myCar01" class="com.niit.soft.Car">
+        <constructor-arg type="java.lang.String" value="奔驰"/>
+        <constructor-arg type="java.lang.String" value="蓝色"/>
+        <constructor-arg type="java.lang.Integer" value="2000000"/>
+    </bean>
+    <bean id="myCar02" class="com.niit.soft.Car">
+        <constructor-arg index="0" value="宝马"/>
+        <constructor-arg index="1" value="黄色"/>
+        <constructor-arg index="2" value="1000000"/>
+    </bean>
+    <bean id="boss" class="com.niit.soft.Boss">
+        <property name="name" value="张三"/>
+        <property name="car" ref="myCar"/>
+        <property name="hobby">
+            <list>
+                <value>运动</value>
+                <value>阅读</value>
+                <value>音乐</value>
+            </list>
+        </property>
+        <property name="jobs">
+            <map>
+                <entry>
+                    <key><value>AM</value></key>
+                    <value>喝茶</value>
+                </entry>
+                <entry>
+                    <key><value>PM</value></key>
+                    <value>看报</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="boss01" class="com.niit.soft.Boss">
+        <constructor-arg type="java.lang.String" value="李四"/>
+        <constructor-arg ref="myCar01"/>
+        <constructor-arg type="java.util.List">
+            <list>
+                <value>运动</value>
+                <value>阅读</value>
+                <value>音乐</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry>
+                    <key><value>AM</value></key>
+                    <value>喝茶</value>
+                </entry>
+                <entry>
+                    <key><value>PM</value></key>
+                    <value>看报</value>
+                </entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="phone" class="com.niit.soft.Phone" p:price="3999">
+        <property name="brand" value="华为"/>
+        <property name="color" value="灰色"/>
+    </bean>
+    <bean id="phone01" class="com.niit.soft.Phone">
+        <constructor-arg type="java.lang.String" value="oppo"/>
+        <constructor-arg type="java.lang.String" value="红色"/>
+        <constructor-arg type="java.lang.Integer" value="2999"/>
+    </bean>
+    <bean id="student" class="com.niit.soft.Student">
+        <property name="name" value="张三"/>
+        <property name="age" value="20"/>
+        <property name="phone" ref="phone"/>
+    </bean>
+    <bean id="student01" class="com.niit.soft.Student">
+        <constructor-arg type="java.lang.String" value="李四"/>
+        <constructor-arg type="java.lang.String" value="21"/>
+        <constructor-arg ref="phone01"/>
+    </bean>
+
+    <!--原型-->
+    <bean id="user" class="com.niit.soft.User" scope="prototype"/>
+    <!--单例-->
+    <bean id="user01" class="com.niit.soft.User" scope="singleton"/>
+
+
+    <bean id="stu" class="com.niit.cycle.Student"
+          init-method="initStudent" destroy-method="destoryStudent">
+        <property name="name" value="张三"/>
+    </bean>
+
+</beans>

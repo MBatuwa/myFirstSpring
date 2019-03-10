@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--手机-->
+    <bean id="phone" class="com.niit.sum.Phone">
+        <constructor-arg type="java.lang.String" value="华为"/>
+        <constructor-arg type="java.lang.String" value="苍穹灰"/>
+    </bean>
+    <bean id="phone01" class="com.niit.sum.Phone">
+        <property name="brand" value="oppo"/>
+        <property name="color" value="黑色"/>
+    </bean>
+<!--学生-->
+    <bean id="student" class="com.niit.sum.Student">
+        <property name="name" value="周周周"/>
+        <property name="gender" value="女"/>
+        <property name="hobby">
+            <list>
+                <value>音乐</value>
+                <value>电影</value>
+            </list>
+        </property>
+        <property name="phone" ref="phone"/>
+    </bean>
+    <bean id="student01" class="com.niit.sum.Student">
+        <constructor-arg type="java.lang.String" value="胡胡胡"/>
+        <constructor-arg type="java.lang.String" value="男"/>
+        <constructor-arg type="java.util.List">
+            <list>
+                <value>音乐</value>
+                <value>运动</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg ref="phone01"/>
+    </bean>
+<!--组别-->
+    <bean id="group" class="com.niit.sum.Group">
+        <property name="theme" value="音乐"/>
+        <property name="stu">
+            <list>
+                <ref bean="student"/>
+                <ref bean="student01"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

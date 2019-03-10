@@ -1,0 +1,12 @@
+import com.niit.soft.UserDao;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestIoC {
+    public static void main(String[] args){
+        ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
+        UserDao u=(UserDao) ac.getBean("userDao");
+        u.say();
+
+    }
+}
